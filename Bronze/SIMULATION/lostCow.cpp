@@ -20,7 +20,7 @@ void setIO(string name = "") {
 int main()
 {
     adhamet;
-	setIO("lostcow");
+    setIO("lostcow");
 
     int farmer, bessie;     cin >> farmer >> bessie;
     
