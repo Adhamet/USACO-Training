@@ -20,24 +20,24 @@ void setIO(string name = "") {
 int main()
 {
     adhamet;
-    setIO("cbarn");
+	setIO("cbarn");
 
     int n;  cin >> n;
     int arr[n];
     for(int i = 0; i < n; i++) cin >> arr[i];
     
-    // O(n)
+    // O(n^2)
     int minTotalDist=1e9;
     for(int i = 0; i < n; i++) {
         int minCurrDist=0;
         int currLoop=n-i, j=1;
         
-        // Loop up to the end of the array
+        // Loop up from i to the end of the array
         while(--currLoop) {
             minCurrDist+=arr[i+j]*j;
             j++;
         }
-        // Loop from the start of the array to upToIdx
+        // Loop from the start of the array to i
         int upToIdx = 0;
         while(upToIdx<i) {
             minCurrDist+=arr[upToIdx]*j;
