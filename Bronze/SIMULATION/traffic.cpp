@@ -10,17 +10,17 @@ using ull = unsigned long long;
 #define dbg(v)                                                                 \
 	cout << "Line(" << __LINE__ << ") -> " << #v << " = " << (v) << endl;
 
-// void setIO(string name = "") {
-// 	if (name.size()) {
-// 		freopen((name+".in").c_str(), "r", stdin);
-// 		freopen((name+".out").c_str(), "w", stdout);	
-// 	}
-// }
+void setIO(string name = "") {
+	if (name.size()) {
+		freopen((name+".in").c_str(), "r", stdin);
+		freopen((name+".out").c_str(), "w", stdout);	
+	}
+}
 
 int main()
 {
     adhamet;
-    // setIO("blist");
+    setIO("traffic");
 
     int n, A[100], B[100];
     string segment_type[100];
