@@ -17,41 +17,47 @@ void setIO(string name = "") {
 	}
 }
 
-bool vis[1000][1000] = {false};
-int second = 0;
-int mowed_at_second[1000][1000] = {0};
-vector<int> savedTimes;
-
-void action(char D, int& x, int& y) {
-    D == 'N' ? x -= 1 : D == 'S' ? x += 1 : D == 'W' ? y -= 1 : y += 1;
-    if (vis[x][y])
-        savedTimes.push_back(second - mowed_at_second[x][y]);
-    vis[x][y] = true;
-    mowed_at_second[x][y] = second;
-    second++;
-}
-
 int main()
 {
     adhamet;
 	setIO("mowing");
-    vis[500][500] = true;
     
     int n;  cin >> n;
-    
-    char D;
-    int S;
-    
-    int x=500,y=500;
+    int time = 1;
+    map<pair<int,int>, int> visit{{ {0,0}, 0 }};
+    vector<int> savedTimes;
+
+    int x=0,y=0;
     for(int i = 0; i < n; i++) {
+        bool up=0,down=0,left=0,right=0;
+
+        char D;
+        int S;
         cin >> D >> S;
-        for(int i = 0; i < S; i++)
-            action(D,x,y);
+
+        if (D=='N') up=1;
+        else if(D=='S') down=1;
+        else if(D=='E') right=1;
+        else if(D=='W') left=1;
+
+        for(int j = 0; j < S; j++) {
+            if(up) x+=1;
+            else if(down) x-=1;
+            else if(right) y+=1;
+            else if(left) y-=1;
+
+            if(visit[{x,y}] != 0) {
+                savedTimes.push_back(time - visit[{x,y}]);
+            }
+            visit[{x,y}] = time;
+            time++;
+        }
     }
-    
+
     int mn = INT_MAX;
-    for(const auto &itm: savedTimes)
+    for(const auto &itm: savedTimes){
         mn = min(mn, itm);
+    }
     cout << (mn == INT_MAX ? -1 : mn);
 
     return 0;
