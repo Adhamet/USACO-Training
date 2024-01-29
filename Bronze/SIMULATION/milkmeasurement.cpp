@@ -36,44 +36,30 @@ int main()
 		mapOfInput[x] = {s,y};
 	}
 
-	int Bessie = 7, Elsie = 7, Mildred = 7;
-	int oldBessie, oldElsie, oldMildred;
-	int globalMax = 0, localMax = 7;
-	int chng = 0;
-	for(auto const &cow : mapOfInput) {
-		if(cow.second.first == "Bessie") {
-			oldBessie = Bessie;
-			Bessie += cow.second.second;
-			if ( (oldBessie == Elsie || oldBessie == Mildred) && oldBessie == globalMax)
-				chng++;
-			else if ( (Bessie == Elsie || Bessie == Mildred) && Bessie == globalMax) 
-				chng++;
-		}
-		else if(cow.second.first == "Elsie") {
-			oldElsie = Elsie;
-			Elsie += cow.second.second;
-			if ( (oldElsie == Bessie || oldElsie == Mildred) && oldMildred == globalMax)
-				chng++;
-			else if ( (Elsie == Bessie || Elsie == Mildred) && Elsie == globalMax) 
-				chng++;
-		}
-		else if(cow.second.first == "Mildred") {
-			oldMildred = Mildred;
-			Mildred += cow.second.second;
-			if ( (oldMildred == Bessie || oldMildred == Elsie) && oldMildred == globalMax)
-				chng++;
-			else if ( (Mildred == Bessie || Mildred == Elsie) && Mildred == globalMax)
-				chng++;
+	int bessie=7,elsie=7,mildred=7;
+	int displayChanges=0, mx_output=7;
+	vector<string> display = {"Bessie", "Elsie", "Mildred"};
+	for(auto const &day: mapOfInput) {
+		string currentCow = day.second.first;
+		int chgMilkOutput = day.second.second;
+		if (currentCow == "Bessie")
+			bessie += chgMilkOutput; // {7,9}
+		else if(currentCow == "Mildred")
+			mildred += chgMilkOutput;
+		else if(currentCow == "Elsie")
+			elsie += chgMilkOutput; // {7,6}
 
-		}
-		
-		localMax = max( {Bessie, Elsie, Mildred} );
-		if (globalMax != localMax) {
-			chng++;
-			globalMax = localMax;
-		}
+		mx_output = max( {bessie, mildred, elsie} );
+
+		vector<string> new_display;
+		if(bessie == mx_output) new_display.push_back("Bessie");
+		if(mildred == mx_output) new_display.push_back("Mildred");
+		if(elsie == mx_output) new_display.push_back("Elsie");
+
+		displayChanges += (display != new_display);
+		display = new_display;
 	}
-	cout << chng;
+	cout << displayChanges;
 
     return 0;
 }
