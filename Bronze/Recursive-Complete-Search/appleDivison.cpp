@@ -11,7 +11,35 @@ using ull = unsigned long long;
 #define dbg(v)                                                                 \
 	cout << "Line(" << __LINE__ << ") -> " << #v << " = " << (v) << endl;
 
-int n;
+/* bitmask */
+int main()
+{
+	adhamet;
+
+	int n;	cin >> n;
+	vector<int> vec(n);
+	for(int i = 0; i < n; i++)
+		cin >> vec[i];
+
+	ll ans = INT64_MAX;
+	for(int b = 0; b < (1<<n); b++) {
+		ll sum1 = 0;
+		ll sum2 = 0;
+		for(int i = 0; i < n; i++)
+		{
+			if(b & (1<<i)) {
+				sum1 += vec[i];
+			} else {
+				sum2 += vec[i];
+			}
+		}
+		ans = min(ans, abs(sum1-sum2));
+	}
+	cout << ans << el;
+
+	return 0;
+}
+/*int n;
 vector<ll> vec;
 
 ll appleDiv(int idx, ll sum1, ll sum2) {
@@ -35,4 +63,4 @@ int main()
 	cout << appleDiv(0, 0, 0) << el;
 
     return 0;
-}
+}*/
