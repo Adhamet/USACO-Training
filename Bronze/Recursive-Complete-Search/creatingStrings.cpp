@@ -23,7 +23,7 @@ int main()
     do {
     	permutations.push_back(s);
     } while(next_permutation(s.begin(),s.end()));
-	
+
 	cout << permutations.size() << el;
 	for(const string& permutation: permutations)
 		cout << permutation << el;
