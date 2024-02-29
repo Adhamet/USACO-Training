@@ -10,6 +10,47 @@ using ull = unsigned long long;
 #define dbg(v)                                                                 \
 	cout << "Line(" << __LINE__ << ") -> " << #v << " = " << (v) << endl;
 
+
+/**
+ * Recursive method
+ */
+int n;
+vector<int> perm, vis;
+
+void search()
+{
+    if (perm.size() == n) {
+        for(int i = 0; i < perm.size(); i++) {
+            cout << perm[i] << " ";
+        }
+        cout << el;
+    } else {
+        for(int i = 0; i < n; i++) {
+            if (vis[i]) continue;
+            vis[i] = true;
+            perm.push_back(i);
+            search();
+            vis[i] = false;
+            perm.pop_back();
+        }
+    }
+}
+
+int main()
+{
+    adhamet;
+
+    cin >> n;
+    vis.resize(n);
+
+    search();
+
+    return 0;
+}
+
+/**
+ * next_permutation method
+ *
 int main()
 {
     adhamet;
@@ -31,4 +72,4 @@ int main()
     } while(next_permutation(perm.begin(),perm.end()));
 	
     return 0;
-}
+} */
