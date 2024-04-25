@@ -23,7 +23,6 @@ int main()
 
         for(int i = 1; i < n; i++) {
             if(arr[i] < arr[i-1]) {
-                // 6: 0110   7: 0111
                 int diff = arr[i-1] - arr[i];
                 int bits = 32 - __builtin_clz(diff);
                 ans = max(ans, (ll)bits);
