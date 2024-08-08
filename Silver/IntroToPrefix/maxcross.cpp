@@ -27,22 +27,11 @@ int main() {
 	}
 
 	vector<int> pref(n + 1);
-	pref[0] = 0;
+	for (int i = 0; i < n; i++) pref[i + 1] = broken[i + 1] + pref[i];
 
-	vector<int> vec(n);
-	iota(vec.begin(), vec.end(), 1);
-	
-	for (int i = 1; i <= n; i++) {
-		pref[i] = pref[i - 1];
-		if (broken[vec[i - 1]]) pref[i] += 1;
-	}
-
-	int l = 1, r = l + k - 1, ans = 1e9;
-	while (r < n) {
-		ans = min(ans, pref[r] - pref[l - 1]);
-		
-		l += 1;
-		r = l + k - 1;
+	int ans = INT_MAX;
+	for (int i = 0; i <= n - k; i++) {
+		ans = min(ans, pref[i + k] - pref[i]);
 	}
 
 	cout << ans << el;
